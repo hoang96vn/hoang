@@ -1,1 +1,80 @@
-# hoang
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Yêu anh không?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background: linear-gradient(to right, #ffcccc, #ffe6e6);
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+    }
+    .heart {
+      position: fixed;
+      top: 100vh;
+      font-size: 24px;
+      color: red;
+      animation: fly 5s linear forwards;
+      pointer-events: none;
+    }
+    @keyframes fly {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Người yêu của anh ơi, em có yêu anh không?</h1>
+  <button id="yes-btn">Có</button>
+  <button id="no-btn">Không</button>
+
+  <div id="hearts-container"></div>
+
+  <h2 id="final-text" style="display: none;">Anh biết mà, yêu em nhiều lắm!</h2>
+
+  <script>
+    // Nút Không chạy loạn
+    const noBtn = document.getElementById("no-btn");
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - noBtn.clientWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.clientHeight);
+      noBtn.style.position = "absolute";
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    });
+
+    // Nút Có tạo trái tim bay + hiện chữ
+    document.getElementById("yes-btn").addEventListener("click", () => {
+      for (let i = 0; i < 30; i++) {
+        createHeart();
+      }
+      document.getElementById("final-text").style.display = "block";
+    });
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+      document.getElementById("hearts-container").appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
