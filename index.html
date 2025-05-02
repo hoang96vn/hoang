@@ -5,25 +5,23 @@
   <title>Yêu anh không?</title>
   <style>
     body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin-top: 50px;
-  background-image: url('https://hoang96vn.github.io/hoang/background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: white;
-  text-shadow: 1px 1px 2px black;
-}
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-image: url('https://hoang96vn.github.io/hoang/background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+    }
     button {
       padding: 10px 20px;
       font-size: 16px;
       margin: 10px;
       cursor: pointer;
+      transition: opacity 0.5s ease;
     }
-    button {
-  transition: opacity 0.5s ease;
-}
     .heart {
       position: fixed;
       top: 100vh;
@@ -40,41 +38,41 @@
         opacity: 0;
       }
     }
+    @keyframes pop {
+      from { transform: scale(0.5) translate(-50%, -50%); opacity: 0; }
+      to { transform: scale(1) translate(-50%, -50%); opacity: 1; }
+    }
   </style>
 </head>
 <body>
   <h1>XuânThy, em có yêu anh Hoàng đẹp trai không?</h1>
   <button id="yes-btn">Có</button>
-  
   <button id="no-btn">Không</button>
 
   <div id="hearts-container"></div>
-
   <h2 id="final-text" style="display: none;">Anh biết mà, yêu em nhiều lắm!</h2>
+
   <div id="popup-love" style="
-  display:none;
-  position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  background: pink;
-  padding: 20px;
-  font-size: 24px;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  animation: pop 0.5s ease-out;
-">💖 Anh yêu em 💖</div>
+    display:none;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: pink;
+    padding: 20px;
+    font-size: 24px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    animation: pop 0.5s ease-out;
+  ">💖 Anh yêu em 💖</div>
 
-<style>
-@keyframes pop {
-  from { transform: scale(0.5) translate(-50%, -50%); opacity: 0; }
-  to { transform: scale(1) translate(-50%, -50%); opacity: 1; }
-}
+  <audio id="love-audio" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   
-</style>
-
   <script>
-    // Nút Không chạy loạn
+    const yesBtn = document.getElementById("yes-btn");
     const noBtn = document.getElementById("no-btn");
+
+    // Khi di chuột vào "Không" thì nó chạy loạn
     noBtn.addEventListener("mouseover", () => {
       const x = Math.random() * (window.innerWidth - noBtn.clientWidth);
       const y = Math.random() * (window.innerHeight - noBtn.clientHeight);
@@ -83,20 +81,32 @@
       noBtn.style.top = `${y}px`;
     });
 
-    // Nút Có tạo trái tim bay + hiện chữ
-    const yesBtn = document.getElementById("yes-btn");
-const noBtn = document.getElementById("no-btn");
+    // Khi bấm "Có"
+    yesBtn.addEventListener("click", () => {
+      for (let i = 0; i < 10; i++) {
+        createHeart();
+      }
 
-yesBtn.addEventListener("click", () => {
-  for (let i = 0; i < 10; i++) {
-    createHeart();
-  }
+      // Hiện chữ
+      document.getElementById("final-text").style.display = "block";
 
-  document.getElementById("final-text").style.display = "block";
+      // Hiện popup
+      document.getElementById("popup-love").style.display = "block";
 
-  // Ẩn nút "Không"
-  noBtn.style.display = "none";
-});
+      // Phát nhạc
+      document.getElementById("love-audio").play();
+
+      // Bắn confetti
+      confetti({
+        particleCount: 150,
+        spread: 100,
+        origin: { y: 0.6 }
+      });
+
+      // Làm mờ rồi ẩn nút "Không"
+      noBtn.style.opacity = "0";
+      setTimeout(() => noBtn.style.display = "none", 500);
+    });
 
     function createHeart() {
       const heart = document.createElement("div");
@@ -104,10 +114,9 @@ yesBtn.addEventListener("click", () => {
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
 
-      // Gắn ảnh GIF anime boy blowing heart vào
       heart.innerHTML = `<img src="https://media.giphy.com/media/6Uqa3vLCikV1yNRmdU/giphy.gif" 
-                            alt="Anime boy blowing heart" 
-                            style="width:80px; height:auto;">`;
+                         alt="Anime boy blowing heart" 
+                         style="width:80px; height:auto;">`;
 
       document.getElementById("hearts-container").appendChild(heart);
 
@@ -115,12 +124,6 @@ yesBtn.addEventListener("click", () => {
         heart.remove();
       }, 5000);
     }
-  document.getElementById("love-audio").play();
-    document.getElementById("popup-love").style.display = "block";
-    noBtn.style.opacity = "0";
-setTimeout(() => noBtn.style.display = "none", 500);
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <audio id="love-audio" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
 </body>
 </html>
