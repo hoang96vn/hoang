@@ -21,6 +21,9 @@
       margin: 10px;
       cursor: pointer;
     }
+    button {
+  transition: opacity 0.5s ease;
+}
     .heart {
       position: fixed;
       top: 100vh;
@@ -66,6 +69,7 @@
   from { transform: scale(0.5) translate(-50%, -50%); opacity: 0; }
   to { transform: scale(1) translate(-50%, -50%); opacity: 1; }
 }
+  
 </style>
 
   <script>
@@ -80,17 +84,19 @@
     });
 
     // Nút Có tạo trái tim bay + hiện chữ
-    document.getElementById("yes-btn").addEventListener("click", () => {
-      for (let i = 0; i < 10; i++) {
-        confetti({
-  particleCount: 150,
-  spread: 100,
-  origin: { y: 0.6 }
+    const yesBtn = document.getElementById("yes-btn");
+const noBtn = document.getElementById("no-btn");
+
+yesBtn.addEventListener("click", () => {
+  for (let i = 0; i < 10; i++) {
+    createHeart();
+  }
+
+  document.getElementById("final-text").style.display = "block";
+
+  // Ẩn nút "Không"
+  noBtn.style.display = "none";
 });
-        createHeart();
-      }
-      document.getElementById("final-text").style.display = "block";
-    });
 
     function createHeart() {
       const heart = document.createElement("div");
@@ -111,6 +117,8 @@
     }
   document.getElementById("love-audio").play();
     document.getElementById("popup-love").style.display = "block";
+    noBtn.style.opacity = "0";
+setTimeout(() => noBtn.style.display = "none", 500);
   </script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <audio id="love-audio" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
