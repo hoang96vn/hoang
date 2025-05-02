@@ -38,6 +38,7 @@
 <body>
   <h1>XuânThy, em có yêu anh Hoàng đẹp trai không?</h1>
   <button id="yes-btn">Có</button>
+  
   <button id="no-btn">Không</button>
 
   <div id="hearts-container"></div>
@@ -58,6 +59,11 @@
     // Nút Có tạo trái tim bay + hiện chữ
     document.getElementById("yes-btn").addEventListener("click", () => {
       for (let i = 0; i < 10; i++) {
+        confetti({
+  particleCount: 150,
+  spread: 100,
+  origin: { y: 0.6 }
+});
         createHeart();
       }
       document.getElementById("final-text").style.display = "block";
@@ -81,5 +87,6 @@
       }, 5000);
     }
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </body>
 </html>
