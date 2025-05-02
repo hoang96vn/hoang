@@ -42,9 +42,51 @@
       from { transform: scale(0.5) translate(-50%, -50%); opacity: 0; }
       to { transform: scale(1) translate(-50%, -50%); opacity: 1; }
     }
+    #navbar {
+  background: rgba(255, 192, 203, 0.8);
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+#navbar button {
+  background: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.section {
+  margin-top: 100px;
+  font-size: 20px;
+  padding: 20px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+}
   </style>
 </head>
 <body>
+  <!-- Thanh menu -->
+<div id="navbar">
+  <button onclick="showSection('anh')">📷 Hình của Anh</button>
+  <button onclick="showSection('em')">💃 Hình của Em</button>
+  <button onclick="showSection('2025')">📆 2025</button>
+  <button onclick="showSection('chat')">💌 Góc Chát</button>
+</div>
+
+<!-- Các khu vực nội dung -->
+<div id="section-anh" class="section" style="display:none;">Hình của Anh đây nè 😎</div>
+<div id="section-em" class="section" style="display:none;">Hình của Em dễ thương ghê 😘</div>
+<div id="section-2025" class="section" style="display:none;">Những khoảnh khắc 2025 ✨</div>
+<div id="section-chat" class="section" style="display:none;">Góc chát để nhắn gửi 💬</div>
   <h1>XuânThy, em có yêu anh Hoàng đẹp trai không?</h1>
   <button id="yes-btn">Có</button>
   <button id="no-btn">Không</button>
@@ -124,6 +166,12 @@
         heart.remove();
       }, 5000);
     }
+    function showSection(name) {
+  // Ẩn tất cả các section
+  document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
+  // Hiện section được chọn
+  document.getElementById('section-' + name).style.display = 'block';
+}
   </script>
 </body>
 </html>
