@@ -44,6 +44,25 @@
   <div id="hearts-container"></div>
 
   <h2 id="final-text" style="display: none;">Anh biết mà, yêu em nhiều lắm!</h2>
+  <div id="popup-love" style="
+  display:none;
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: pink;
+  padding: 20px;
+  font-size: 24px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  animation: pop 0.5s ease-out;
+">💖 Anh yêu em 💖</div>
+
+<style>
+@keyframes pop {
+  from { transform: scale(0.5) translate(-50%, -50%); opacity: 0; }
+  to { transform: scale(1) translate(-50%, -50%); opacity: 1; }
+}
+</style>
 
   <script>
     // Nút Không chạy loạn
@@ -87,6 +106,7 @@
       }, 5000);
     }
   document.getElementById("love-audio").play();
+    document.getElementById("popup-love").style.display = "block";
   </script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <audio id="love-audio" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
