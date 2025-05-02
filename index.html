@@ -9,17 +9,17 @@
       text-align: center;
       margin-top: 50px;
       background: linear-gradient(to right, #ffcccc, #ffe6e6);
+      overflow: hidden;
     }
     button {
       padding: 10px 20px;
       font-size: 16px;
       margin: 10px;
+      cursor: pointer;
     }
     .heart {
       position: fixed;
       top: 100vh;
-      font-size: 40px;
-      color: red;
       animation: fly 5s linear forwards;
       pointer-events: none;
     }
@@ -57,7 +57,7 @@
 
     // Nút Có tạo trái tim bay + hiện chữ
     document.getElementById("yes-btn").addEventListener("click", () => {
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 10; i++) {
         createHeart();
       }
       document.getElementById("final-text").style.display = "block";
@@ -66,9 +66,14 @@
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
-      heart.innerHTML = "<img src='https://media.giphy.com/media/6Uqa3vLCikV1yNRmdU/giphy.gif' alt='Anime boy blowing heart' style='width:300px;'>";
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+
+      // Gắn ảnh GIF anime boy blowing heart vào
+      heart.innerHTML = `<img src="https://media.giphy.com/media/6Uqa3vLCikV1yNRmdU/giphy.gif" 
+                            alt="Anime boy blowing heart" 
+                            style="width:80px; height:auto;">`;
+
       document.getElementById("hearts-container").appendChild(heart);
 
       setTimeout(() => {
