@@ -1,177 +1,186 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <title>Yêu anh không?</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
-      background-image: url('https://hoang96vn.github.io/hoang/background.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      color: white;
-      text-shadow: 1px 1px 2px black;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin: 10px;
-      cursor: pointer;
-      transition: opacity 0.5s ease;
-    }
-    .heart {
-      position: fixed;
-      top: 100vh;
-      animation: fly 5s linear forwards;
-      pointer-events: none;
-    }
-    @keyframes fly {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-120vh) scale(1.5);
-        opacity: 0;
-      }
-    }
-    @keyframes pop {
-      from { transform: scale(0.5) translate(-50%, -50%); opacity: 0; }
-      to { transform: scale(1) translate(-50%, -50%); opacity: 1; }
-    }
-    #navbar {
-  background: rgba(255, 192, 203, 0.8);
-  padding: 10px;
-  position: fixed;
-  top: 0;
-  left: 0; right: 0;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
-}
-
-#navbar button {
-  background: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.section {
-  margin-top: 100px;
-  font-size: 20px;
-  padding: 20px;
-  background: rgba(255,255,255,0.2);
-  border-radius: 10px;
-}
-  </style>
+  <meta charset="UTF-8">
+  <title>Quốc Hoàng đẹp trai</title>
+  <link rel="stylesheet" href="https://hoang96vn.github.io/css/style.css" />
 </head>
 <body>
-  <!-- Thanh menu -->
-<div id="navbar">
-  <button onclick="showSection('anh')">📷 Hình của Anh</button>
-  <button onclick="showSection('em')">💃 Hình của Em</button>
-  <button onclick="showSection('2025')">📆 2025</button>
-  <button onclick="showSection('chat')">💌 Góc Chát</button>
-</div>
-
-<!-- Các khu vực nội dung -->
-<div id="section-anh" class="section" style="display:none;">Hình của Anh đây nè 😎</div>
-<div id="section-em" class="section" style="display:none;">Hình của Em dễ thương ghê 😘</div>
-<div id="section-2025" class="section" style="display:none;">Những khoảnh khắc 2025 ✨</div>
-<div id="section-chat" class="section" style="display:none;">Góc chát để nhắn gửi 💬</div>
-  <h1>XuânThy, em có yêu anh Hoàng đẹp trai không?</h1>
+  <div class="body">
+    <div class="header">
+  <div class="logo">
+    <img src="https://hoang96vn.github.io/hoang/Logo.jpg" alt="Logo">
+  </div>
+  <div class="banner">
+    Trang web riêng tư của Quốc Hoàng & Xuân Thy
+  
+ <h2>Xuân Thy, em có yêu anh Hoàng đẹp trai không?</h2>
   <button id="yes-btn">Có</button>
   <button id="no-btn">Không</button>
 
+  <div id="popup">💖 Anh yêu em 💖</div>
   <div id="hearts-container"></div>
-  <h2 id="final-text" style="display: none;">Anh biết mà, yêu em nhiều lắm!</h2>
+     <div class="box">
+         <div class="marquee-container">
+  <div class="marquee-text">💖 Anh yêu em nhiều lắm Thy ơi 💖</div>
+</div>
+</div>
+</div>
+   
+  </div>
+  <!-- Header -->
 
-  <div id="popup-love" style="
-    display:none;
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    background: pink;
-    padding: 20px;
-    font-size: 24px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
-    animation: pop 0.5s ease-out;
-  ">💖 Anh yêu em 💖</div>
 
-  <audio id="love-audio" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  
-  <script>
-    const yesBtn = document.getElementById("yes-btn");
-    const noBtn = document.getElementById("no-btn");
+  <!-- Main content -->  
+    <!-- Sidebar -->
+    <div class="sidebar">
+      
+      <a href="https://hoang96vn.github.io/hoang">Trang chủ</a>        <!-- Liên kết tới trang chủ -->
+      <a href="https://hoang96vn.github.io/chat">Chat</a>            <!-- Liên kết tới trang chat -->
+      <a href="https://hoang96vn.github.io/hinhanh">Hình Ảnh</a>    <!-- Liên kết tới trang giới thiệu -->
+      <a href="https://hoang96vn.github.io/plan">Kế hoạch</a>    <!-- Liên kết tới trang giới thiệu -->
+      <a href="https://hoang96vn.github.io/lienhe">Liên hệ</a>     <!-- Liên kết tới trang liên hệ -->
+    </div>
 
-    // Khi di chuột vào "Không" thì nó chạy loạn
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * (window.innerWidth - noBtn.clientWidth);
-      const y = Math.random() * (window.innerHeight - noBtn.clientHeight);
-      noBtn.style.position = "absolute";
-      noBtn.style.left = `${x}px`;
-      noBtn.style.top = `${y}px`;
-    });
+    <!-- Nội dung chính -->
+    <div class="main-content">
+      <div id="navbar">
+ <button id="btn-em">Hình Em</button>
+<button id="btn-anh">Hình Anh</button>
+       <button id="btn-chung">Hình chung</button> 
 
-    // Khi bấm "Có"
-    yesBtn.addEventListener("click", () => {
-      for (let i = 0; i < 10; i++) {
-        createHeart();
-      }
+<!-- Ảnh popup -->
+<div id="image-popup" style="
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background: white;
+  padding: 10px;
+  border: 3px solid pink;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+">
+  <img id="popup-img" src="" alt="Ảnh popup" style="max-width: 100%; max-height: 80%;" />
+</div></div>
+      <p style="font-size: 20px">❖ Trang chủ 》 </p>
+      <p style="font-size: 15px">• Hành trình tình yêu:<p>
+        <div style="
+  border-left: 4px solid rgba(255, 105, 180, 0.4);  /* màu hồng nhạt và mờ */
+  padding-left: 15px;
+  margin: 20px;
+  font-style: italic;
+  color: #444;
+"><i>
+  “Yêu một người là cùng nhau đi qua hết những điều nhỏ nhặt nhất, và vẫn chọn nắm tay nhau đến tận cuối con đường.”</i>
+</div><br>
+     <p> Chúng mình gặp nhau vào một ngày rất đỗi bình thường,cả hai chỉ là những người bạn xa lạ. Mình nói chuyện với nhau qua vài tin nhắn 
+      không ai ngờ rằng, những cuộc trò chuyện giản dị ấy lại trở thành một phần không thể thiếu mỗi ngày.
+      Thời gian trôi qua, ánh mắt dành cho nhau lâu hơn, nụ cười cũng trở nên ấm áp hơn. Và rồi, chúng mình yêu nhau lúc nào chẳng hay.
+      </p>
+      <b>Yêu Là Cùng Nhau Trưởng Thành</b><br>
+      Chúng mình không chỉ yêu nhau trong những ngày vui, mà cả những lúc giận hờn, xa cách. Có lần, tưởng chừng như không thể tiếp tục, nhưng sau tất cả, lại nhận ra 
+      rằng: không ai có thể thay thế được vị trí của nhau.
 
-      // Hiện chữ
-      document.getElementById("final-text").style.display = "block";
+Tình yêu không phải lúc nào cũng ngọt ngào. Nhưng chính những va vấp, những lần tha thứ, là thứ khiến mối quan hệ bền chặt và chân thành hơn.<br>
+      <b>Những Kỷ Niệm Không Thể Quên</b><br>
+      Chuyến đi đầu tiên cùng nhau là Phan Thiết - đảo Bình Hưng. Mình cùng ngồi bên nhau trên con xe exciter, chạy một quảng đường rất rất dài biết bao nhiêu khói bụi để rồi
+     thành quả nhận được là những cảnh đẹp mà trước nay chỉ xem qua Tiktok, khung cảnh đẹp như trong giấc mơ đặc biệt là nó được thực hiện cùng em, có em trong giấc mơ.
+      Trong khoảnh khắc đó, mọi thứ đều đẹp một cách thơ mộng.
+    </div>
+    
+      
+<script>
+  const yesBtn = document.getElementById("yes-btn");
+  const noBtn = document.getElementById("no-btn");
+  const popup = document.getElementById("popup");
+  const heartContainer = document.getElementById("hearts-container");
 
-      // Hiện popup
-      document.getElementById("popup-love").style.display = "block";
+  // Nút Không nhảy lung tung
+  noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    noBtn.style.position = "absolute";
+    noBtn.style.left = `${x}px`;
+    noBtn.style.top = `${y}px`;
+  });
 
-      // Phát nhạc
-      document.getElementById("love-audio").play();
+  // Nút Có: Hiện popup và trái tim
+  yesBtn.addEventListener("click", () => {
+    popup.style.display = "block";
 
-      // Bắn confetti
-      confetti({
-        particleCount: 150,
-        spread: 100,
-        origin: { y: 0.6 }
-      });
+    // Tự tắt popup sau 5 giây
+    setTimeout(() => {
+      popup.style.display = "none";
+    }, 5000);
 
-      // Làm mờ rồi ẩn nút "Không"
-      noBtn.style.opacity = "0";
-      setTimeout(() => noBtn.style.display = "none", 500);
-    });
-
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
-
-      heart.innerHTML = `💖" 
-                         alt="Anime boy blowing heart" 
-                         style="width:80px; height:auto;">`;
-
-      document.getElementById("hearts-container").appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 5000);
+    // Tạo trái tim bay bay
+    for (let i = 0; i < 20; i++) {
+      createHeart();
     }
-    function showSection(name) {
-  // Ẩn tất cả các section
-  document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
-  // Hiện section được chọn
-  document.getElementById('section-' + name).style.display = 'block';
-}
-  </script>
+  });
+
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.top = Math.random() * 100 + "vh";
+    heart.style.position = "absolute";
+    heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+    heartContainer.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 5000);
+  }
+
+  // --- Hiện ảnh popup ---
+  const imagePopup = document.getElementById("image-popup");
+  const popupImg = document.getElementById("popup-img");
+
+  function showImage(...srcList) {
+    const randomSrc = srcList[Math.floor(Math.random() * srcList.length)];
+    popupImg.src = randomSrc;
+    imagePopup.style.display = "block";
+    setTimeout(() => {
+      imagePopup.style.display = "none";
+    }, 3000);
+  }
+
+  // Gán cho nút Em
+  document.getElementById("btn-em").addEventListener("mouseenter", () => {
+    showImage(
+      "https://hoang96vn.github.io/hoang/em1.jpg",
+      "https://hoang96vn.github.io/hoang/em2.jpg",
+      "https://hoang96vn.github.io/hoang/em3.jpg"
+    );
+  });
+
+  // Gán cho nút Anh
+  document.getElementById("btn-anh").addEventListener("mouseenter", () => {
+    showImage(
+      "https://hoang96vn.github.io/hoang/anh1.jpg",
+      "https://hoang96vn.github.io/hoang/anh2.jpg",
+      "https://hoang96vn.github.io/hoang/anh3.jpg"
+    );
+  });
+
+  // Gán cho nút Chung
+  document.getElementById("btn-chung").addEventListener("mouseenter", () => {
+    showImage(
+      "https://hoang96vn.github.io/hoang/chung1.jpg",
+      "https://hoang96vn.github.io/hoang/chung2.jpg",
+      "https://hoang96vn.github.io/hoang/chung3.jpg"
+    );
+  });
+
+</script>
 </body>
+   <footer>
+    <b>Copy right Ⓡ by Hoangdeptrai - Người lạ vui lòng thoát ra
+    </b>
+    </footer> 
 </html>
